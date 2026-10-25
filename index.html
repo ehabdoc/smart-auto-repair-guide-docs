@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل الاستخدام — دليل إصلاح السيارات الذكي</title>
+<style>
+  :root{
+    --brand:#0b4f6c;
+    --brand-2:#11718f;
+    --brand-soft:#e8f1f5;
+    --ink:#16202a;
+    --ink-2:#42525f;
+    --ink-3:#6b7b88;
+    --line:#dfe6ec;
+    --line-2:#eef2f6;
+    --bg:#f3f6f8;
+    --card:#ffffff;
+    --warn:#8a5a00;
+    --warn-bg:#fff6e2;
+    --danger:#8c1d1d;
+    --danger-bg:#fdeeee;
+    --ok:#1d5c3a;
+    --ok-bg:#e9f6ee;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(16,32,44,.06),0 8px 24px rgba(16,32,44,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Segoe UI","Noto Naskh Arabic",Tahoma,Arial,sans-serif;
+    font-size:16.5px;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--brand-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code,kbd,.mono{font-family:Consolas,"Courier New",monospace;direction:ltr;unicode-bidi:isolate}
+  code{background:#eef3f6;border:1px solid #e0e8ee;border-radius:6px;padding:1px 6px;font-size:.88em}
+
+  /* ---------------------------------------------------------------- hero */
+  .hero{
+    background:
+      radial-gradient(1200px 420px at 85% -30%, rgba(255,255,255,.16), transparent 60%),
+      linear-gradient(135deg,#08384d 0%,#0b4f6c 45%,#116b8b 100%);
+    color:#fff;padding:44px 28px 38px;
+  }
+  .hero-in{max-width:1180px;margin:0 auto}
+  .kicker{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#a9d3e3;font-weight:700}
+  .hero h1{margin:.35rem 0 .4rem;font-size:2.35rem;line-height:1.25;font-weight:800;letter-spacing:-.01em}
+  .hero p.lead{margin:0;max-width:62ch;color:#d6e8f0;font-size:1.02rem}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .chip{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    color:#eaf5f9;border-radius:999px;padding:5px 13px;font-size:.83rem;font-weight:600;
+    backdrop-filter:blur(2px);
+  }
+  .chip b{font-weight:800;color:#fff}
+
+  /* ---------------------------------------------------------------- layout */
+  .wrap{max-width:1180px;margin:0 auto;padding:34px 24px 80px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:34px;align-items:start}
+  @media (max-width:960px){ .wrap{grid-template-columns:1fr;padding-top:22px} .toc{position:static !important;order:2} }
+
+  /* ---------------------------------------------------------------- toc */
+  .toc{
+    position:sticky;top:22px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px 14px;box-shadow:var(--shadow);
+  }
+  .toc h2{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:2px 6px 10px}
+  .toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  .toc li{margin:1px 0}
+  .toc a{
+    display:flex;gap:9px;align-items:baseline;color:var(--ink-2);
+    padding:6px 8px;border-radius:9px;font-size:.92rem;line-height:1.5;
+  }
+  .toc a:hover{background:var(--brand-soft);color:var(--brand);text-decoration:none}
+  .toc a.active{background:var(--brand);color:#fff}
+  .toc a .n{
+    flex:0 0 auto;font-size:.72rem;font-weight:800;color:var(--brand-2);
+    background:var(--brand-soft);border-radius:6px;padding:1px 6px;min-width:22px;text-align:center;
+  }
+  .toc a.active .n{background:rgba(255,255,255,.2);color:#fff}
+
+  /* ---------------------------------------------------------------- sections */
+  main{min-width:0}
+  section{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 24px;margin:0 0 22px;box-shadow:var(--shadow);scroll-margin-top:16px;
+  }
+  section > h2{
+    display:flex;align-items:center;gap:12px;
+    font-size:1.42rem;line-height:1.35;margin:0 0 6px;font-weight:800;letter-spacing:-.01em;
+  }
+  section > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(160deg,var(--brand),var(--brand-2));color:#fff;font-size:.95rem;font-weight:800;
+  }
+  .sub{color:var(--ink-3);margin:0 0 18px;font-size:.95rem}
+  h3{font-size:1.08rem;margin:26px 0 8px;font-weight:800;color:var(--brand)}
+  h4{font-size:.98rem;margin:18px 0 6px;font-weight:700}
+  p{margin:0 0 12px}
+  ul,ol{margin:0 0 14px;padding-inline-start:1.35em}
+  li{margin:5px 0}
+  li::marker{color:var(--brand-2);font-weight:700}
+  strong{font-weight:800}
+
+  /* ---------------------------------------------------------------- callouts */
+  .box{border-radius:12px;padding:14px 16px;margin:16px 0;border:1px solid;font-size:.95rem}
+  .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+  .box .t{font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .note{background:var(--brand-soft);border-color:#cfe2ea;color:#0d3f55}
+  .note .t{color:var(--brand)}
+  .warn{background:var(--warn-bg);border-color:#f2dfb4;color:#5f4100}
+  .warn .t{color:var(--warn)}
+  .danger{background:var(--danger-bg);border-color:#f3cccc;color:#6d1414}
+  .danger .t{color:var(--danger)}
+  .ok{background:var(--ok-bg);border-color:#c9e6d4;color:#154c30}
+  .ok .t{color:var(--ok)}
+
+  /* ---------------------------------------------------------------- steps */
+  .steps{list-style:none;counter-reset:st;padding:0;margin:8px 0 4px}
+  .steps > li{
+    counter-increment:st;position:relative;padding:0 46px 0 0;margin:0 0 16px;
+  }
+  .steps > li::before{
+    content:counter(st);position:absolute;inset-inline-start:0;top:2px;
+    width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    background:#fff;border:2px solid var(--brand-2);color:var(--brand);font-weight:800;font-size:.88rem;
+  }
+  .steps > li::after{
+    content:"";position:absolute;inset-inline-start:14px;top:34px;bottom:-14px;width:2px;
+    background:linear-gradient(#cfe0e8,#eef3f6);
+  }
+  .steps > li:last-child::after{display:none}
+  .steps > li b{display:block;font-size:1rem;margin-bottom:2px}
+
+  /* ---------------------------------------------------------------- tables */
+  table{width:100%;border-collapse:collapse;margin:14px 0 6px;font-size:.93rem}
+  th,td{padding:10px 12px;text-align:start;vertical-align:top;border-bottom:1px solid var(--line-2)}
+  thead th{background:#f7fafc;color:var(--ink-3);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+  tbody tr:hover{background:#fafcfd}
+  td .badge{white-space:nowrap}
+
+  .badge{display:inline-block;border-radius:999px;padding:1px 10px;font-size:.78rem;font-weight:700;border:1px solid}
+  .b-gen{background:#eaf3f8;border-color:#c9e0ea;color:#0d4f68}
+  .b-make{background:#f3eefb;border-color:#ddd0f0;color:#4b2a7a}
+  .b-un{background:#f1f3f5;border-color:#dde3e8;color:#4a5a67}
+  .b-ok{background:var(--ok-bg);border-color:#c9e6d4;color:var(--ok)}
+
+  /* ---------------------------------------------------------------- figures */
+  figure{margin:18px 0 6px;text-align:center}
+  .figrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+  @media (max-width:760px){ .figrow{grid-template-columns:1fr} }
+
+  .phone-wrap{position:relative;padding-inline-end:0}
+  .phone{
+    max-width:340px;margin-inline:auto;
+    border:9px solid #14181d;border-radius:26px;overflow:hidden;background:#0d1116;
+    box-shadow:0 12px 28px rgba(9,24,34,.22),0 2px 0 rgba(255,255,255,.5) inset;
+    line-height:0;
+  }
+  .phone img{width:100%;height:auto;display:block}
+  figcaption{font-size:.86rem;color:var(--ink-3);margin-top:8px;text-align:center;line-height:1.6}
+  figcaption b{color:var(--ink-2)}
+
+  /* annotated markers, placed outside the frame on the inline-end side */
+  .annot{position:relative;width:fit-content;margin-inline:auto;padding-inline-end:46px}
+  .mk{
+    position:absolute;inset-inline-end:2px;transform:translateY(-50%);
+    width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+    background:var(--brand);color:#fff;font-weight:800;font-size:.82rem;
+    box-shadow:0 2px 6px rgba(11,79,108,.35);z-index:2;
+  }
+  .mk::before{
+    content:"";position:absolute;inset-inline-end:28px;top:50%;width:14px;height:2px;background:var(--brand);opacity:.45;
+  }
+  .legend{counter-reset:lg;list-style:none;padding:0;margin:14px 0 0;font-size:.94rem}
+  .legend li{counter-increment:lg;position:relative;padding-inline-start:38px;margin:7px 0;color:var(--ink-2)}
+  .legend li::before{
+    content:counter(lg);position:absolute;inset-inline-start:0;top:3px;width:24px;height:24px;border-radius:50%;
+    display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);font-weight:800;font-size:.76rem;
+    border:1px solid #cfe2ea;
+  }
+  .legend b{color:var(--ink)}
+
+  /* ---------------------------------------------------------------- faq */
+  details{
+    border:1px solid var(--line);border-radius:12px;padding:0;margin:10px 0;background:#fcfdfe;overflow:hidden;
+  }
+  details[open]{background:#fff;box-shadow:0 4px 14px rgba(16,32,44,.05)}
+  summary{
+    cursor:pointer;padding:13px 16px;font-weight:700;color:var(--ink);list-style:none;
+    display:flex;gap:10px;align-items:center;justify-content:space-between;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+    background:var(--brand-soft);color:var(--brand);font-weight:800;font-size:1rem;
+  }
+  details[open] summary::after{content:"−"}
+  details .body{padding:0 16px 14px 16px;color:var(--ink-2);font-size:.95rem}
+  details .body p:last-child{margin-bottom:0}
+
+  /* ---------------------------------------------------------------- misc */
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.92rem;margin:12px 0}
+  .kv dt{color:var(--ink-3);font-weight:700}
+  .kv dd{margin:0;color:var(--ink)}
+  .foot{
+    max-width:1180px;margin:0 auto;padding:0 24px 60px;color:var(--ink-3);font-size:.86rem;line-height:1.9;
+  }
+  .foot .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+  .foot h3{color:var(--ink-2);font-size:.95rem;margin:0 0 6px}
+  .top{position:fixed;inset-inline-end:18px;bottom:18px;background:var(--brand);color:#fff;border-radius:999px;
+       padding:9px 16px;font-size:.85rem;font-weight:700;box-shadow:0 6px 18px rgba(11,79,108,.35);z-index:9}
+  .top:hover{text-decoration:none;background:var(--brand-2)}
+
+  @media print{
+    body{background:#fff;font-size:11pt}
+    .hero{background:#0b4f6c !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .toc,.top{display:none}
+    .wrap{display:block;padding:0;max-width:none}
+    section{break-inside:avoid;box-shadow:none;border-color:#ccc;margin-bottom:14px;page-break-inside:avoid}
+    .phone{box-shadow:none}
+    figure{page-break-inside:avoid}
+    a{color:#000;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="kicker">دليل المستخدم · الإصدار 1.0.0+1</div>
+    <h1>دليل إصلاح السيارات الذكي<br><span style="font-weight:600;font-size:.62em;color:#c8e2ee">مرجع أكواد أعطال OBD‑II يعمل دون إنترنت</span></h1>
+    <p class="lead">
+      هذا الدليل يشرح التطبيق شاشةً بشاشة: كيف تبحث عن رمز عطل، وتقرأ تعريفه وأسبابه، وتتبع إجراءً تشخيصيًا خطوة بخطوة،
+      وتحفظ ما تحتاجه وتتابع جلساتك — كل ذلك على الجهاز، دون حساب ودون اتصال بالسيارة.
+    </p>
+    <div class="chips">
+      <span class="chip">قاعدة البيانات: <b>2026.10.23</b></span>
+      <span class="chip">الأكواد: <b>12,412</b></span>
+      <span class="chip">الإجراءات: <b>326</b></span>
+      <span class="chip">الشركات: <b>25</b> (أسواق الخليج)</span>
+      <span class="chip">أندرويد</span>
+      <span class="chip">عربي / إنجليزي</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============================================================ TOC -->
+  <nav class="toc" aria-label="فهرس الدليل">
+    <h2>محتويات الدليل</h2>
+    <ol>
+      <li><a href="#intro"><span class="n">٠</span> قبل أن تبدأ</a></li>
+      <li><a href="#quick"><span class="n">١</span> بدء سريع في دقيقة</a></li>
+      <li><a href="#install"><span class="n">٢</span> التثبيت والتشغيل الأول</a></li>
+      <li><a href="#home"><span class="n">٣</span> الشاشة الرئيسية</a></li>
+      <li><a href="#search"><span class="n">٤</span> البحث والتصفية</a></li>
+      <li><a href="#detail"><span class="n">٥</span> تفاصيل الرمز</a></li>
+      <li><a href="#procedure"><span class="n">٦</span> الإجراء التشخيصي</a></li>
+      <li><a href="#session"><span class="n">٧</span> جلسة التشخيص</a></li>
+      <li><a href="#saved"><span class="n">٨</span> المحفوظات</a></li>
+      <li><a href="#history"><span class="n">٩</span> سجل البحث</a></li>
+      <li><a href="#settings"><span class="n">١٠</span> الإعدادات</a></li>
+      <li><a href="#ai"><span class="n">١١</span> المساعد الذكي (اختياري)</a></li>
+      <li><a href="#updates"><span class="n">١٢</span> تحديثات البيانات</a></li>
+      <li><a href="#database"><span class="n">١٣</span> حالة قاعدة البيانات</a></li>
+      <li><a href="#sources"><span class="n">١٤</span> المصادر والتراخيص</a></li>
+      <li><a href="#english"><span class="n">١٥</span> المظهر الإنجليزي والفاتح</a></li>
+      <li><a href="#faq"><span class="n">١٦</span> أسئلة شائعة ومشاكل</a></li>
+      <li><a href="#limits"><span class="n">١٧</span> حدود التطبيق</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ======================================================== 0 -->
+    <section id="intro">
+      <h2><span class="num">٠</span> قبل أن تبدأ: ما هذا التطبيق وما ليس هو</h2>
+      <p class="sub">ثلاث دقائق تقرأها الآن توفّر عليك سوء فهم لاحق.</p>
+
+      <div class="figrow">
+        <div class="box ok" style="margin:0">
+          <div class="t">✓ ما يفعله</div>
+          <ul style="margin:0">
+            <li>يعرض تعريف الرمز (DTC) باللغة المصدرية مع الأعراض والأسباب والمكوّنات.</li>
+            <li>يربط الرمز بإجراء تشخيص مرتّب عندما يكون متوفرًا، ويشغّل جلسة تُسجّل كل خطوة.</li>
+            <li>يحفظ الأكواد والإجراءات والجلسات على جهازك، ويعمل بالكامل بلا إنترنت.</li>
+          </ul>
+        </div>
+        <div class="box danger" style="margin:0">
+          <div class="t">✕ ما لا يفعله</div>
+          <ul style="margin:0">
+            <li><strong>لا يتصل بالسيارة</strong>: لا وصلة OBD‑II، ولا بلوتوث، ولا ناقل CAN. أنت من يقرأ الرمز بجهاز فحص خارجي ثم يُدخله هنا.</li>
+            <li>لا يربط الرمز بموديل أو سنة صنع محددة (هذه البيانات غير متوفرة في المصادر المفتوحة).</li>
+            <li>لا يترجم النصوص الفنية إلى العربية، ولا يقدّم إجراءات رسمية من الشركات المصنّعة.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="t">معلومة مهمة عن اللغة</div>
+        <p>
+          واجهة التطبيق مترجمة بالكامل إلى العربية (مع اتجاه RTL)، لكن <strong>النصوص الفنية للأعطال تظهر بلغتها الأصلية</strong>
+          (الإنجليزية، والألمانية عند توفرها في المصدر)، لأن المصادر المفتوحة لا تحتوي ترجمات عربية موثوقة. لن تجد ترجمة آلية
+          داخل التطبيق — وهذا قرار مقصود للحفاظ على الدقة الفنية.
+        </p>
+      </div>
+
+      <table>
+        <thead><tr><th style="width:32%">المصطلح في الواجهة</th><th>معناه</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-gen">عام (SAE/ISO)</span></td><td>رمز معياري موحّد بين كل الشركات المصنّعة.</td></tr>
+          <tr><td><span class="badge b-make">خاص بشركة مصنّعة</span></td><td>رمز يعني شيئًا مختلفًا عند شركة معيّنة، ويُعرض مع اسم الشركة.</td></tr>
+          <tr><td><span class="badge b-un">غير منسوب لشركة</span></td><td>رمز موجود في المصدر دون تحديد الشركة التي تستخدمه.</td></tr>
+          <tr><td>التعريف الموسّع / الوصفي / الأساسي</td><td>مستوى ثراء البيانات: موسّع = مع أسباب وأعراض، وصفي = عنوان فقط، أساسي = غير متحقق منه.</td></tr>
+          <tr><td>إصلاح تحريري مرتّب</td><td>خطوات مجمّعة من مصادر عامة، <strong>وليست</strong> إجراءً رسميًا من الشركة المصنّعة.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ======================================================== 1 -->
+    <section id="quick">
+      <h2><span class="num">١</span> بدء سريع في دقيقة</h2>
+      <p class="sub">إذا أردت النتيجة الآن دون قراءة الدليل كله، اتبع هذه الخطوات الخمس.</p>
+      <ol class="steps">
+        <li><b>افتح التطبيق</b> وانتظر ثانية واحدة حتى تُثبَّت قاعدة البيانات الداخلية وتُتحقق بصمتها.</li>
+        <li><b>اكتب الرمز</b> في حقل البحث أعلى الشاشة الرئيسية — مثل <code>P0420</code> — ثم اضغط <strong>بحث</strong>.</li>
+        <li><b>اضغط على النتيجة</b> لتقرأ التعريف والأعراض والأسباب.</li>
+        <li><b>ابحث عن قسم «خطوات تشخيص مرتّبة»</b> في أسفل شاشة الرمز، ثم اضغط <strong>ابدأ التشخيص المنظم</strong>.</li>
+        <li><b>أجب عن كل خطوة</b> بـ«نجحت / فشلت / تم التخطي» وأضف ملاحظاتك، ثم <strong>أنهِ الجلسة</strong> لتحفظ النتيجة النهائية.</li>
+      </ol>
+      <div class="box note">
+        <div class="t">حفظ سريع</div>
+        <p>أيقونة العلامة (🔖) أعلى شاشة الرمز تحفظه في <strong>المحفوظات</strong> لتعود إليه لاحقًا دون بحث جديد.</p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 2 -->
+    <section id="install">
+      <h2><span class="num">٢</span> التثبيت والتشغيل الأول</h2>
+      <p class="sub">التطبيق ملف APK واحد، ولا يطلب أي إذن حساس.</p>
+
+      <ol class="steps">
+        <li>
+          <b>ثبّت ملف APK</b>
+          <p>انقل الملف إلى الهاتف وافتحه من مدير الملفات، أو استخدم سطر الأوامر من الحاسوب:</p>
+          <p><code>adb install -r app-release.apk</code></p>
+          <p>قد يطلب أندرويد السماح بالتثبيت من مصدر غير معروف؛ اسمح بذلك مؤقتًا ثم أعد الإعداد.</p>
+        </li>
+        <li>
+          <b>شغّل التطبيق أول مرة</b>
+          <p>في أول تشغيل ينسخ التطبيق قاعدة البيانات المرفقة إلى مساحة التطبيق، ثم يتحقق من:</p>
+          <ul>
+            <li>بصمة الملف <span class="mono">SHA‑256</span> مقابل ملف البيان (manifest).</li>
+            <li>سلامة قاعدة البيانات (<span class="mono">integrity_check</span>).</li>
+            <li>مطابقة إصدار المخطط الذي يفهمه التطبيق.</li>
+          </ul>
+          <p>إن فشل أي فحص، لن تُستخدم البيانات المعطوبة أبدًا، وتظهر رسالة واضحة بدلًا من محتوى ناقص.</p>
+        </li>
+        <li>
+          <b>لا حاجة إلى إنترنت</b>
+          <p>كل المحتوى موجود داخل التطبيق. الإنترنت مطلوب فقط في حالتين اختياريتين: تحديث قاعدة البيانات، أو استخدام المساعد الذكي.</p>
+        </li>
+        <li>
+          <b>اضبط اللغة والمظهر</b>
+          <p>من <strong>الإعدادات ← اللغة والاتجاه</strong> اختر «العربية» أو «English» أو «لغة النظام»، ومن <strong>المظهر</strong> اختر فاتحًا أو داكنًا.</p>
+        </li>
+      </ol>
+
+      <div class="box warn">
+        <div class="t">إن ظهرت شاشة «قاعدة بيانات المحتوى غير متاحة»</div>
+        <p>
+          معناها أن النسخة المرفقة لم تُبنَ أو فشل التحقق منها. للمستخدم العادي: أعد تثبيت النسخة الرسمية.
+          للمطوّر: أعد بناء قاعدة البيانات بالأمر
+          <code>python tools/build_database.py --sources-dir tools/.sources</code> ثم أعد بناء التطبيق.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 3 -->
+    <section id="home">
+      <h2><span class="num">٣</span> الشاشة الرئيسية</h2>
+      <p class="sub">نقطة الانطلاق: البحث، والأكواد الشائعة، والوصول السريع لكل شركة.</p>
+
+      <figure class="annot">
+        <div class="phone">
+          <img src="screenshots/01_home.png" alt="الشاشة الرئيسية للتطبيق بالعربية والوضع الداكن">
+        </div>
+        <span class="mk" style="top:15%">1</span>
+        <span class="mk" style="top:23.3%">2</span>
+        <span class="mk" style="top:35%">3</span>
+        <span class="mk" style="top:56%">4</span>
+        <span class="mk" style="top:84%">5</span>
+        <span class="mk" style="top:93.5%">6</span>
+        <figcaption><b>الشكل ١</b> — الشاشة الرئيسية (عربي · مظهر داكن)</figcaption>
+      </figure>
+
+      <ol class="legend">
+        <li><b>حقل البحث</b> — يقبل رمزًا كاملًا <code>P0420</code> أو بدايته <code>P04</code> أو كلمة إنجليزية <code>catalyst</code>. تظهر اقتراحات مباشرة بعد كتابة حرفين.</li>
+        <li><b>زر البحث</b> — ينقلك إلى شاشة النتائج. (زر «بحث» في لوحة المفاتيح يفعل الشيء نفسه).</li>
+        <li><b>أكواد شائعة</b> — اختصارات لأكثر الرموز تكرارًا في الورشة: P0420، P0171، P0300، P0128، P0442، P0301.</li>
+        <li><b>الشركة المصنّعة</b> — ضغطة واحدة تفتح كل أكواد تلك الشركة مرتّبة حسب العدد. تُعرض 12 شركة من أصل 25.</li>
+        <li><b>ملخص قاعدة البيانات</b> — إصدار البيانات وعدد الأكواد والإجراءات، مع زر <strong>عرض الإحصاءات</strong> للتفاصيل الكاملة.</li>
+        <li><b>شريط التنقل السفلي</b> — البحث · المحفوظات · السجل · الإعدادات.</li>
+      </ol>
+
+      <h3>أسفل الشاشة الرئيسية</h3>
+      <p>بالتمرير للأسفل تجد بطاقة إحصاءات مصغّرة وبطاقة إرشادات البحث:</p>
+
+      <figure class="annot">
+        <div class="phone">
+          <img src="screenshots/02_home_scrolled.png" alt="الجزء السفلي من الشاشة الرئيسية">
+        </div>
+        <span class="mk" style="top:44%">1</span>
+        <span class="mk" style="top:66%">2</span>
+        <figcaption><b>الشكل ٢</b> — بقية الشاشة الرئيسية بعد التمرير</figcaption>
+      </figure>
+      <ol class="legend">
+        <li><b>ملخص قاعدة البيانات</b> — إصدار البيانات، عدد الأكواد الفريدة، عدد إجراءات التشخيص، وتاريخ البناء.</li>
+        <li><b>كيف تبحث</b> — ثلاثة تذكيرات سريعة: ابحث بالرمز الكامل أو بدايته، ابحث بكلمات إنجليزية، وصفِّ النتائج من شاشة النتائج.</li>
+      </ol>
+
+      <div class="box note">
+        <div class="t">نصيحة عملية</div>
+        <p>
+          ابدأ دائمًا بالرمز كما قرأه جهاز الفحص. إن لم تجد نتيجة، جرّب البحث بالكلمة الوصفية
+          (<code>misfire</code>، <code>oxygen sensor</code>، <code>catalyst</code>) لأن بعض الرموز تُخزَّن بعنوان وصفي فقط.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 4 -->
+    <section id="search">
+      <h2><span class="num">٤</span> البحث والتصفية</h2>
+      <p class="sub">من كتابة الرمز إلى قائمة نتائج مرتّبة حسب نوع المطابقة.</p>
+
+      <figure class="annot">
+        <div class="phone">
+          <img src="screenshots/03_search_results.png" alt="شاشة نتائج البحث عن الرمز P0420">
+        </div>
+        <span class="mk" style="top:10.5%">1</span>
+        <span class="mk" style="top:17.5%">2</span>
+        <span class="mk" style="top:21.5%">3</span>
+        <span class="mk" style="top:27.5%">4</span>
+        <figcaption><b>الشكل ٣</b> — نتائج البحث عن <code>P0420</code> (5 نتائج)</figcaption>
+      </figure>
+
+      <ol class="legend">
+        <li><b>حقل البحث</b> — يمكنك تعديل الرمز هنا وإعادة البحث بالسهم الجانبي أو بزر «بحث» في لوحة المفاتيح.</li>
+        <li><b>شريط التصفية</b> — أفقي وقابل للتمرير: الشركة المصنّعة، النظام (نقل الحركة / الهيكل / الشاسيه / الشبكة)، والنطاق (عام / خاص بشركة / غير منسوب). عند تفعيل أي تصفية يظهر زر <strong>إزالة التصفية</strong>.</li>
+        <li><b>عدد النتائج</b> — يتغيّر فورًا مع كل تصفية.</li>
+        <li><b>بطاقة النتيجة</b> — الرمز بخط ثابت، شارة النطاق، العنوان، وسطر يوضح نوع المطابقة وعدد التعريفات المتاحة. اضغطها لفتح التفاصيل.</li>
+      </ol>
+
+      <h3>أنواع المطابقة التي يعرضها التطبيق</h3>
+      <table>
+        <thead><tr><th style="width:30%">العبارة</th><th>المعنى</th></tr></thead>
+        <tbody>
+          <tr><td>رمز مطابق تمامًا</td><td>أدخلت الرمز كاملًا ووُجد له تعريف.</td></tr>
+          <tr><td>بادئة رمز</td><td>أدخلت جزءًا من الرمز (مثل <code>P04</code>) فتظهر كل الرموز التي تبدأ به.</td></tr>
+          <tr><td>مطابقة في العنوان</td><td>بحثك بالكلمة وجدها في عنوان التعريف.</td></tr>
+          <tr><td>مطابقة في الوصف</td><td>بحثك بالكلمة وجدها في نص الوصف.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>عندما لا توجد نتيجة</h3>
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/04_search_empty.png" alt="شاشة لا يوجد رمز مطابق للرمز P1604 مع تصفية Toyota">
+        </div>
+        <figcaption><b>الشكل ٤</b> — لا يوجد تعريف للرمز <code>P1604</code> عند <strong>Toyota</strong> في قاعدة البيانات الحالية</figcaption>
+      </figure>
+      <p>
+        التطبيق لا يخترع تعريفًا ولا يخمّن. إذا لم يكن الرمز موجودًا لشركة معيّنة، يقول ذلك صراحةً ويشرح الاحتمالات:
+        رمز خاص بشركة لم يُشمَل بعد، أو خطأ في الإدخال. <strong>هذه شاشة صدق، لا شاشة خطأ.</strong>
+      </p>
+      <div class="box warn">
+        <div class="t">حالة واقعية: P1604 على تويوتا</div>
+        <p>
+          هذا الرمز موجود في القاعدة لكن لشركات أخرى (BMW، GM، مازدا، فولكسفاغن)، ولا يوجد له تعريف لدى تويوتا لأن المصدر
+          المفتوح نفسه لا يضمّه. إن أردت المتابعة، ابحث عن الرمز دون تصفية الشركة، أو ابحث بالكلمة الوصفية.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 5 -->
+    <section id="detail">
+      <h2><span class="num">٥</span> تفاصيل الرمز</h2>
+      <p class="sub">الشاشة الأهم في التطبيق: كل ما تعرفه القاعدة عن الرمز في مكان واحد.</p>
+
+      <figure class="annot">
+        <div class="phone">
+          <img src="screenshots/05_code_detail.png" alt="شاشة تفاصيل الرمز P0420">
+        </div>
+        <span class="mk" style="top:11.5%">1</span>
+        <span class="mk" style="top:19.5%">2</span>
+        <span class="mk" style="top:33%">3</span>
+        <span class="mk" style="top:81%">4</span>
+        <span class="mk" style="top:90%">5</span>
+        <figcaption><b>الشكل ٥</b> — تفاصيل الرمز <code>P0420</code></figcaption>
+      </figure>
+
+      <ol class="legend">
+        <li><b>شارات التصنيف</b> — النطاق (عام SAE/ISO)، مستوى البيانات (تعريف موسّع)، الشركة إن وُجدت، والنظام (نقل الحركة).</li>
+        <li><b>العنوان</b> — العنوان الإنجليزي، وتحته العنوان الألماني عندما يوفّره المصدر.</li>
+        <li><b>الوصف</b> — شرح فني لكيفية اكتشاف الوحدة للعطل وما يعنيه الرمز. النص بلغته الأصلية كما ورد في المصدر.</li>
+        <li><b>سطر المصدر</b> — من أين جاء التعريف (مثل <code>obdex</code>) وتاريخ آخر مراجعة.</li>
+        <li><b>مؤشرات النظام</b> — لمبة الأعطال (MIL)، ارتباطه بالانبعاثات، حاجته إلى دورة قيادة، وإمكانية تنفيذه شخصيًا مع درجة الصعوبة.</li>
+      </ol>
+
+      <h3>بقية الأقسام (بالتمرير)</h3>
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/06_code_detail_causes.png" alt="أقسام مؤشرات النظام والتعريفات الأخرى والأعراض في شاشة تفاصيل الرمز">
+        </div>
+        <figcaption><b>الشكل ٦</b> — مؤشرات النظام، التعريفات البديلة، وبداية الأعراض المتوقعة</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th style="width:30%">القسم</th><th>ما ستجده فيه وكيف تستخدمه</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>تعريفات أخرى لهذا الرمز</strong></td>
+            <td>قد يكون للرمز أكثر من تعريف من مصادر ونطاقات مختلفة (عام، خاص بشركة، وصفي). كل تعريف قابل للفتح على حدة، ولا تُدمج التعريفات معًا أبدًا.</td>
+          </tr>
+          <tr>
+            <td><strong>الأعراض المتوقعة</strong></td>
+            <td>ما يلاحظه السائق أو الفني عادةً. تنبيه دائم: الرمز يشير إلى عرض وليس إلى عطل مؤكد.</td>
+          </tr>
+          <tr>
+            <td><strong>الأسباب المحتملة</strong></td>
+            <td>مرتّبة مع وسم الاحتمال (مرتفع / متوسط / منخفض) ووسم الدليل (مدعوم بمصادر / اقتراح تحريري / احتمال عام).</td>
+          </tr>
+          <tr>
+            <td><strong>المكونات المرتبطة</strong></td>
+            <td>القطع التي يجب فحصها، وهي مدخل طبيعي لخطوات التشخيص.</td>
+          </tr>
+          <tr>
+            <td><strong>أكواد مرتبطة</strong></td>
+            <td>رموز تظهر عادةً مع هذا الرمز؛ اضغطها للانتقال إليها مباشرة.</td>
+          </tr>
+          <tr>
+            <td><strong>مراجع عامة</strong></td>
+            <td>روابط إلى صفحات المصدر الأصلية، تُفتح في المتصفح.</td>
+          </tr>
+          <tr>
+            <td><strong>خطوات تشخيص مرتّبة</strong></td>
+            <td>الإجراءات المرتبطة بالرمز. إن لم يوجد إجراء، يوضّح التطبيق ذلك بدل تركك تبحث عن شيء غير موجود.</td>
+          </tr>
+          <tr>
+            <td><strong>نطاق السيارات</strong></td>
+            <td>حاليًا يوضّح التطبيق أن ربط الرمز بالموديل/السنة غير متوفر، بدلًا من عرض بيانات مُخمّنة.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box note">
+        <div class="t">أزرار الشريط العلوي</div>
+        <p>
+          <strong>العلامة 🔖</strong> تحفظ الرمز في المحفوظات (وتتحول إلى علامة ممتلئة عند الحفظ).
+          <strong>أيقونة النسخ</strong> تنسخ تقريرًا نصيًا بالرمز وتفاصيله لمشاركته مع عميل أو زميل.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 6 -->
+    <section id="procedure">
+      <h2><span class="num">٦</span> الإجراء التشخيصي</h2>
+      <p class="sub">من «ما معنى الرمز؟» إلى «ماذا أفعل الآن؟» — بخطوات مرقّمة وقيم مرجعية.</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/07_procedure.png" alt="شاشة إجراء التشخيص للرمز P0300">
+        </div>
+        <figcaption><b>الشكل ٧</b> — إجراء تشخيص مرتبط بالرمز <code>P0300</code> (5 خطوات)</figcaption>
+      </figure>
+
+      <p>تتكوّن الشاشة من أربعة أجزاء:</p>
+      <ul>
+        <li><strong>بطاقة الإجراء</strong>: العنوان، الرمز، شارة التحقق (إصلاح تحريري مرتّب — ليس إجراءً رسميًا)، النطاق، عدد الخطوات، درجة الصعوبة، والتكلفة التقديرية للقطع.</li>
+        <li><strong>القطع المشار إليها</strong>: ما يُتوقع استبداله، مع تنبيه أن التكاليف تقديرية بالدولار وتختلف حسب المنطقة.</li>
+        <li><strong>سبب هذا الترتيب</strong> و<strong>تحذيرات السلامة</strong>: لماذا تبدأ بهذه الخطوة أولًا، وما يجب تجنّبه.</li>
+        <li><strong>عرض الخطوات</strong>: كل خطوة بأدواتها وقيمتها المرجعية ونتيجتها المتوقعة، وأحيانًا الخطوة التالية عند الفشل.</li>
+      </ul>
+
+      <div class="box ok">
+        <div class="t">الزر الرئيسي</div>
+        <p>
+          <strong>ابدأ التشخيص المنظم</strong> ينشئ جلسة جديدة لهذا الإجراء. وإذا كانت لديك جلسة نشطة لنفس الإجراء،
+          يتحول الزر إلى <strong>استئناف الجلسة</strong> ويعيدك إلى الخطوة التي توقفت عندها.
+        </p>
+      </div>
+
+      <div class="box warn">
+        <div class="t">التغطية الحالية</div>
+        <p>
+          الإجراءات التفصيلية متوفرة لعدد محدود من الأكواد (326 إجراءً مقابل 12,412 رمزًا). عدم وجود إجراء
+          <strong>لا يعني</strong> أن الرمز غير مدعوم — التعريف والأعراض والأسباب تبقى متاحة وصالحة.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 7 -->
+    <section id="session">
+      <h2><span class="num">٧</span> جلسة التشخيص خطوة بخطوة</h2>
+      <p class="sub">هذه الميزة تحوّل الفحص من ملاحظات متناثرة إلى سجل منظّم يمكن الرجوع إليه.</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/08_session.png" alt="شاشة جلسة تشخيص قيد التنفيذ مع خطوة حالية وخطوات تمت الإجابة عنها">
+        </div>
+        <figcaption><b>الشكل ٨</b> — جلسة نشطة: خطوتان مُجابتان من أصل 5، والخطوة الحالية هي الثالثة</figcaption>
+      </figure>
+
+      <h3>كيف تُدار الجلسة</h3>
+      <ol class="steps">
+        <li><b>شريط التقدم</b> — يوضّح عدد الخطوات المُجاب عنها، والخطوة الحالية، وعدد النتائج الفاشلة حتى الآن.</li>
+        <li><b>الخطوة الحالية</b> — نص الفحص المطلوب، وأحيانًا الأدوات والقيمة المرجعية والنتيجة المتوقعة.</li>
+        <li><b>ملاحظات (اختياري)</b> — اكتب ما قستَه فعلًا: قيمة المقاومة، رقم الأسطوانة، قراءة الجهاز. هذه الملاحظات تُحفظ مع الخطوة.</li>
+        <li><b>النتيجة التي أدخلتها</b> — ثلاثة أزرار: <strong>نجحت</strong> · <strong>فشلت</strong> · <strong>تم التخطي</strong>.</li>
+        <li><b>الخطوات المُجاب عنها</b> — قائمة قابلة للمراجعة بكل خطوة ونتيجتها وملاحظاتها، مع أيقونة خضراء للنجاح وحمراء للفشل.</li>
+        <li><b>الإنهاء في أي وقت</b> — «إنهاء الجلسة» يحفظ الحالة والنتيجة النهائية، ويمكنك ترك الجلسة مفتوحة والعودة إليها لاحقًا.</li>
+      </ol>
+
+      <h3>كيف يؤثر جوابك على المسار؟</h3>
+      <p>
+        بعض الإجراءات متفرّعة: جواب «نجحت» ينقلك إلى خطوة، و«فشلت» إلى خطوة أخرى. عندما تكون السلسلة خطية بالكامل
+        يظهر تنبيه صريح: <em>«هذا الإجراء سلسلة فحص خطية دون انتقالات متفرعة»</em> — أي أن كل الخطوات ستُعرض بالترتيب.
+      </p>
+
+      <h3>النتيجة النهائية للجلسة</h3>
+      <table>
+        <thead><tr><th style="width:36%">الخيار</th><th>متى تختاره</th></tr></thead>
+        <tbody>
+          <tr><td>الخطوة التالية للفحص — احتمال مرجّح</td><td>عندما تشير نتائجك إلى سبب واحد أرجح من غيره وتريد توثيق الخطوة التالية.</td></tr>
+          <tr><td>تم تحديد العطل وإصلاحه</td><td>عندما ينتهي الفحص إلى إصلاح مؤكد.</td></tr>
+          <tr><td>يحتاج تشخيصًا احترافيًا</td><td>عندما تتجاوز الحالة أدواتك أو خبرتك.</td></tr>
+          <tr><td>غير حاسم — يحتاج فحوصات إضافية</td><td>عندما تكون النتائج متضاربة.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box note">
+        <div class="t">الجلسات في مكان آخر أيضًا</div>
+        <p>
+          كل الجلسات (النشطة والمكتملة والمتروكة) تجدها في <strong>المحفوظات ← جلسات</strong>، ومنها تفتح أي جلسة
+          لمراجعتها أو حذفها. حذف الجلسة يحذف خطواتها أيضًا، ويطلب التطبيق تأكيدًا قبل ذلك.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 8 -->
+    <section id="saved">
+      <h2><span class="num">٨</span> المحفوظات</h2>
+      <p class="sub">مكتبتك الشخصية: أكواد وإجراءات وجلسات في ثلاثة تبويبات.</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/09_saved.png" alt="شاشة المحفوظات بتبويبات الأكواد والإجراءات والجلسات">
+        </div>
+        <figcaption><b>الشكل ٩</b> — تبويب «أكواد» في المحفوظات</figcaption>
+      </figure>
+
+      <ul>
+        <li><strong>أكواد</strong> — الرموز التي حفظتها من شاشة التفاصيل.</li>
+        <li><strong>إجراءات</strong> — الإجراءات التشخيصية المحفوظة من شاشة الإجراء.</li>
+        <li><strong>جلسات</strong> — كل جلسات التشخيص بحالاتها.</li>
+      </ul>
+      <p>
+        اضغط أي عنصر لفتحه، أو استخدم أيقونة الحذف لإزالته من القائمة. الحفظ لا يحتاج إنترنت ولا حساب،
+        ويبقى محفوظًا بعد إغلاق التطبيق.
+      </p>
+    </section>
+
+    <!-- ======================================================== 9 -->
+    <section id="history">
+      <h2><span class="num">٩</span> سجل البحث</h2>
+      <p class="sub">كل ما بحثت عنه، مع عدد النتائج — بما فيها عمليات البحث التي لم تُثمر.</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/10_history.png" alt="شاشة سجل البحث مع نتائج وعدد النتائج لكل عملية بحث">
+        </div>
+        <figcaption><b>الشكل ١٠</b> — سجل البحث (يُعرض بالتاريخ والوقت المحلي)</figcaption>
+      </figure>
+
+      <ul>
+        <li><strong>اضغط السطر</strong> لإعادة تنفيذ نفس البحث فورًا.</li>
+        <li><strong>×</strong> يحذف سطرًا واحدًا.</li>
+        <li><strong>مسح السجل</strong> في الشريط العلوي يحذف كل السجل بعد تأكيد.</li>
+        <li>الرمز غير الموجود يظهر بعبارة «غير موجود في قاعدة البيانات الحالية» — وهذا مفيد لتذكّر الرموز التي تحتاج بحثًا خارجيًا.</li>
+      </ul>
+      <div class="box note">
+        <div class="t">الخصوصية</div>
+        <p>السجل محلي بالكامل، في قاعدة بيانات منفصلة عن قاعدة المحتوى، ولا يُرسل إلى أي جهة.</p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 10 -->
+    <section id="settings">
+      <h2><span class="num">١٠</span> الإعدادات</h2>
+      <p class="sub">اللغة، المظهر، المساعد الذكي، ومداخل البيانات.</p>
+
+      <div class="figrow">
+        <figure style="margin:0">
+          <div class="phone">
+            <img src="screenshots/11_settings.png" alt="شاشة الإعدادات: اللغة والمظهر والمساعد الذكي والبيانات">
+          </div>
+          <figcaption><b>الشكل ١١</b> — الإعدادات (المساعد الذكي مُعطَّل افتراضيًا)</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <div class="phone">
+            <img src="screenshots/12_settings_ai.png" alt="قسم المساعد الذكي بعد تفعيله مع حقل المفتاح واختيار الموديل">
+          </div>
+          <figcaption><b>الشكل ١٢</b> — قسم المساعد الذكي بعد التفعيل</figcaption>
+        </figure>
+      </div>
+
+      <table>
+        <thead><tr><th style="width:28%">الإعداد</th><th>الخيارات والأثر</th></tr></thead>
+        <tbody>
+          <tr><td><strong>اللغة والاتجاه</strong></td><td>لغة النظام / العربية / English. تغيير اللغة يقلب اتجاه الواجهة تلقائيًا (RTL/LTR) دون إعادة تشغيل.</td></tr>
+          <tr><td><strong>المظهر</strong></td><td>حسب النظام / فاتح / داكن. الوضع الداكن مناسب للعمل داخل الورشة والإضاءة الخافتة.</td></tr>
+          <tr><td><strong>المساعد الذكي</strong></td><td>مُعطَّل افتراضيًا. عند تفعيله يظهر حقل المفتاح واختيار الموديل وإدارة التحليلات المحفوظة.</td></tr>
+          <tr><td><strong>تحديثات البيانات</strong></td><td>ينتقل إلى شاشة التحديث (القسم ١٢).</td></tr>
+          <tr><td><strong>حالة قاعدة البيانات</strong></td><td>ينتقل إلى شاشة الفحص والإحصاءات (القسم ١٣).</td></tr>
+          <tr><td><strong>المصادر والتراخيص</strong></td><td>قائمة المصادر وإسنادها ورخصها (القسم ١٤).</td></tr>
+          <tr><td><strong>عن التطبيق</strong></td><td>ما يعرفه التطبيق وما لا يعرفه، وبيان الصدق الفني.</td></tr>
+          <tr><td><strong>تراخيص البرمجيات المفتوحة</strong></td><td>تراخيص المكتبات المستخدمة داخل التطبيق.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ======================================================== 11 -->
+    <section id="ai">
+      <h2><span class="num">١١</span> المساعد الذكي (اختياري تمامًا)</h2>
+      <p class="sub">شرح عربي مُختصر لرمز واحد، بمفتاحك الخاص، وعند طلبك فقط.</p>
+
+      <div class="box warn">
+        <div class="t">قبل أن تُفعّله</div>
+        <p>
+          هذه الميزة تحتاج إنترنت ومفتاح <strong>Gemini API</strong> من Google AI Studio. التطبيق يعمل بالكامل بدونها،
+          وهي <strong>مُعطَّلة افتراضيًا</strong>، ولا تُرسل شيئًا إلا عند ضغطك على زر التحليل.
+        </p>
+      </div>
+
+      <h3>التهيئة في خمس خطوات</h3>
+      <ol class="steps">
+        <li><b>فعّل الخيار</b> — من <strong>الإعدادات ← المساعد الذكي</strong> شغّل مفتاح «تفعيل التحليل بالذكاء الاصطناعي».</li>
+        <li><b>احصل على مفتاح</b> — أنشئ مفتاحًا من Google AI Studio (خارج التطبيق).</li>
+        <li><b>ألصق المفتاح واحفظه</b> — يُخزَّن في <strong>مخزن مفاتيح أندرويد</strong> على هذا الجهاز فقط، ولا يُكتب في ملفات الإعدادات العادية.</li>
+        <li><b>اختبر الاتصال</b> — زر «اختبار الاتصال» يؤكد أن المفتاح يعمل قبل أن تعتمد عليه.</li>
+        <li><b>اختر الموديل</b> — الافتراضي <code>gemini-2.5-flash</code>، ويمكن تغييره من القائمة.</li>
+      </ol>
+
+      <h3>الاستخدام داخل شاشة الرمز</h3>
+      <p>
+        في أسفل شاشة تفاصيل الرمز يظهر قسم <strong>«شرح بالذكاء الاصطناعي (بالعربية)»</strong>. اضغط
+        <strong>تحليل بالذكاء الاصطناعي</strong> ليُرسل سجل الرمز فقط (من قاعدة البيانات المحلية) ويُعاد شرح عربي يتضمن:
+        المعنى، الأسباب المحتملة، خطوات الفحص المقترحة، إصلاحات محتملة، تحذيرات السلامة، والأدوات.
+      </p>
+      <ul>
+        <li>النتيجة تُوسم دائمًا بأنها <strong>منشأة بالذكاء الاصطناعي وليست توثيقًا من المصنّع</strong>.</li>
+        <li>النتائج تُحفظ محليًا وتظهر بوسم <strong>«نتيجة محفوظة»</strong> عند إعادة الفتح — دون استهلاك طلب جديد.</li>
+        <li><strong>إعادة التوليد</strong> تطلب تحليلًا جديدًا، و<strong>حذف التحليلات المحفوظة</strong> في الإعدادات يمسحها كلها.</li>
+        <li>أي فشل (مفتاح مرفوض، تجاوز الحد، انقطاع شبكة، مهلة) يظهر كرسالة واضحة، ولا يُستبدل بمحتوى مُخترع.</li>
+      </ul>
+    </section>
+
+    <!-- ======================================================== 12 -->
+    <section id="updates">
+      <h2><span class="num">١٢</span> تحديثات البيانات</h2>
+      <p class="sub">تحديث المحتوى لا يحتاج تحديث التطبيق — لكنه لا يُطبَّق إلا بعد اجتياز كل الفحوص.</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/13_updates.png" alt="شاشة تحديثات البيانات مع حقل مصدر التحديث وزر التحقق">
+        </div>
+        <figcaption><b>الشكل ١٣</b> — تحديثات البيانات (لا يوجد مصدر مضبوط بعد)</figcaption>
+      </figure>
+
+      <h3>كيف تحدّث المحتوى</h3>
+      <ol class="steps">
+        <li><b>اضبط المصدر</b> — أدخل عنوانًا أساسيًا (أو مسارًا محليًا) يحتوي <code>manifest.json</code> وملف قاعدة البيانات، ثم اضغط <strong>حفظ المصدر</strong>.</li>
+        <li><b>تحقّق</b> — زر <strong>التحقق من التحديثات</strong> يقارن إصدار البيانات المتاح بالإصدار الفعّال.</li>
+        <li><b>نزّل وتحقّق</b> — التنزيل يمر بسلسلة فحوص قبل التفعيل.</li>
+        <li><b>الاستعادة عند الحاجة</b> — زر <strong>استعادة الإصدار السابق</strong> يعيد النسخة السابقة، ويظهر فقط عند وجود نسخة محفوظة.</li>
+      </ol>
+
+      <h3>سلسلة الفحص قبل التفعيل</h3>
+      <table>
+        <thead><tr><th style="width:34%">الفحص</th><th>ما يمنعه</th></tr></thead>
+        <tbody>
+          <tr><td>حجم الملف</td><td>ملفات مقطوعة أو تنزيل غير مكتمل.</td></tr>
+          <tr><td>بصمة SHA‑256</td><td>أي تعديل أو تلاعب في الملف.</td></tr>
+          <tr><td>سلامة قاعدة البيانات</td><td>ملفات تالفة لا تفتح.</td></tr>
+          <tr><td>إصدار المخطط</td><td>حزمة تحتاج إصدار تطبيق أحدث.</td></tr>
+          <tr><td>حد المعقولية</td><td>قاعدة بيانات «فارغة» تبدو صحيحة شكليًا.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box ok">
+        <div class="t">ضمانات مهمة</div>
+        <ul style="margin:0">
+          <li>التحديث <strong>لا يمسّ بياناتك</strong>: المحفوظات والسجل والجلسات في قاعدة منفصلة.</li>
+          <li>إن فشل أي فحص، يبقى الإصدار السابق فعّالًا وتظهر رسالة السبب.</li>
+          <li>لا يوجد تراجع تلقائي إلى إصدار أقدم — الاستعادة قرار صريح منك.</li>
+          <li>التفعيل «ذرّي»: إما أن تُستبدل البيانات بالكامل أو لا شيء.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================== 13 -->
+    <section id="database">
+      <h2><span class="num">١٣</span> حالة قاعدة البيانات</h2>
+      <p class="sub">الشاشة التي تجيب عن سؤال: «هل البيانات التي أرى فعليًا سليمة؟»</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/14_database.png" alt="شاشة حالة قاعدة البيانات مع الإصدار والبصمة والسلامة والإحصاءات">
+        </div>
+        <figcaption><b>الشكل ١٤</b> — حالة قاعدة البيانات والإحصاءات</figcaption>
+      </figure>
+
+      <dl class="kv">
+        <dt>إصدار البيانات</dt><dd>تاريخ إصدار المحتوى، مثل <code>2026.10.23</code>.</dd>
+        <dt>إصدار المخطط</dt><dd>بنية الجداول التي يتوقعها التطبيق (حاليًا 3).</dd>
+        <dt>حجم الملف</dt><dd>حجم قاعدة البيانات الفعّالة.</dd>
+        <dt>الإسناد (origin)</dt><dd>من أين جاءت النسخة: مرفقة مع التطبيق (bundled) أو من تحديث.</dd>
+        <dt>SHA‑256</dt><dd>البصمة التي تُقارن مع البيان — دليل عدم التلاعب.</dd>
+        <dt>فحص السلامة</dt><dd>نتيجة <span class="mono">integrity_check</span>: يجب أن تكون <code>ok</code>.</dd>
+      </dl>
+
+      <p>ثم تأتي <strong>إحصاءات المحتوى</strong>: التعريفات (صفوف)، الأكواد الفريدة، الأكواد العامة، أكواد الشركات، إجراءات التشخيص، خطوات الإجراءات، المصادر والتراخيص، ونطاق السيارات.</p>
+      <div class="box note">
+        <div class="t">كيف تقرأها</div>
+        <p>
+          «التعريفات» أكبر من «الأكواد الفريدة» لأن الرمز الواحد قد يرد بعدة تعريفات من مصادر مختلفة.
+          و«نطاق السيارات = 0» معلومة صحيحة ومقصودة: لا يوجد ربط موثّق بين الرموز والموديلات في المصادر المفتوحة.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== 14 -->
+    <section id="sources">
+      <h2><span class="num">١٤</span> المصادر والتراخيص</h2>
+      <p class="sub">كل سطر في قاعدة البيانات يعرف من أين جاء — وهذا ما تعرضه هذه الشاشة.</p>
+
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/15_sources.png" alt="شاشة المصادر والتراخيص مع تفاصيل كل مصدر ورخصته">
+        </div>
+        <figcaption><b>الشكل ١٥</b> — المصادر والتراخيص</figcaption>
+      </figure>
+
+      <p>لكل مصدر تُعرض: رخصة الكود، رخصة البيانات، الالتزام المثبّت (commit)، تاريخ الجلب، الإسناد، ووصف المحتوى المستورد.</p>
+      <table>
+        <thead><tr><th style="width:30%">المصدر</th><th>الرخصة</th><th>الالتزامات</th></tr></thead>
+        <tbody>
+          <tr><td>obdex</td><td>بيانات CC0‑1.0</td><td>لا توجد قيود.</td></tr>
+          <tr><td>Wal33D/dtc-database</td><td>MIT</td><td>حفظ نص الترخيص والإسناد.</td></tr>
+          <tr><td>MechanicDB (عيّنة عامة)</td><td>ODbL‑1.0</td><td>الإسناد + مشاركة الرخصة نفسها على قاعدة البيانات المشتقة.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>عن التطبيق (الصدق الفني)</h3>
+      <figure>
+        <div class="phone" style="max-width:330px;margin-inline:auto">
+          <img src="screenshots/16_about.png" alt="شاشة عن التطبيق مع قسمي ما لا يعرفه التطبيق والصدق الفني">
+        </div>
+        <figcaption><b>الشكل ١٦</b> — «عن التطبيق»: ما يعرفه وما لا يعرفه</figcaption>
+      </figure>
+      <p>
+        يشرح هذا القسم صراحةً أن التطبيق لا يتصل بالسيارة إطلاقًا، ولا يقدّم إجراءات رسمية من الشركات المصنّعة،
+        ولا مخططات كهربائية ولا أرقام أطراف ولا قيم مرجعية، وأنه ليس بديلًا عن معلومات الصيانة الرسمية.
+      </p>
+    </section>
+
+    <!-- ======================================================== 15 -->
+    <section id="english">
+      <h2><span class="num">١٥</span> المظهر الإنجليزي والوضع الفاتح</h2>
+      <p class="sub">نفس المحتوى بترتيب LTR وبألوان فاتحة — مفيد للمشاركة على الشاشة أو الطباعة.</p>
+
+      <div class="figrow">
+        <figure style="margin:0">
+          <div class="phone">
+            <img src="screenshots/17_home_en_light.png" alt="الشاشة الرئيسية بالإنجليزية والوضع الفاتح">
+          </div>
+          <figcaption><b>الشكل ١٧</b> — الرئيسية · إنجليزي · فاتح</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <div class="phone">
+            <img src="screenshots/18_code_detail_en_light.png" alt="شاشة تفاصيل الرمز بالإنجليزية والوضع الفاتح">
+          </div>
+          <figcaption><b>الشكل ١٨</b> — تفاصيل الرمز · إنجليزي · فاتح</figcaption>
+        </figure>
+      </div>
+      <p>
+        التبديل من <strong>الإعدادات ← اللغة والاتجاه</strong> و<strong>← المظهر</strong>. كل الشاشات تدعم الاتجاهين،
+        وتُعرض النصوص الفنية دائمًا باتجاهها الصحيح حتى داخل الواجهة العربية.
+      </p>
+    </section>
+
+    <!-- ======================================================== 16 -->
+    <section id="faq">
+      <h2><span class="num">١٦</span> أسئلة شائعة ومشاكل متوقعة</h2>
+      <p class="sub">أكثر ما يسأل عنه المستخدمون، بإجابات مباشرة.</p>
+
+      <details>
+        <summary>هل يعمل التطبيق دون إنترنت فعلًا؟</summary>
+        <div class="body"><p>نعم. كل المحتوى والبحث والجلسات تعمل محليًا. الإنترنت مطلوب فقط لتحديث قاعدة البيانات أو لاستخدام المساعد الذكي، وكلاهما اختياري.</p></div>
+      </details>
+
+      <details>
+        <summary>هل يقرأ أعطال سيارتي بنفسه؟</summary>
+        <div class="body"><p>لا. التطبيق مرجع، لا جهاز فحص. اقرأ الرمز بجهاز OBD‑II ثم أدخله في البحث. لا توجد أي وصلة أو بلوتوث أو ناقل CAN.</p></div>
+      </details>
+
+      <details>
+        <summary>بحثت عن رمز فلم أجد نتيجة — لماذا؟</summary>
+        <div class="body">
+          <p>ثلاثة أسباب محتملة بالترتيب:</p>
+          <ol>
+            <li>الرمز خاص بشركة لم تُشمَل في القاعدة بعد.</li>
+            <li>الرمز مكتوب بصيغة مختلفة (تحقق من الحروف والأرقام: حرف P/B/C/U ثم أربعة أرقام ست عشرية).</li>
+            <li>الرمز غير موجود في المصادر المفتوحة المستخدمة أصلًا.</li>
+          </ol>
+          <p>جرّب البحث دون تصفية الشركة، أو ابحث بكلمة وصفية إنجليزية.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>لماذا النصوص الفنية بالإنجليزية وليست بالعربية؟</summary>
+        <div class="body"><p>لأن المصادر المفتوحة المرخّصة لا تحتوي نصوصًا عربية، والتطبيق يرفض الترجمة الآلية للنصوص الفنية حفاظًا على الدقة. الواجهة والأزرار والرسائل كلها عربية.</p></div>
+      </details>
+
+      <details>
+        <summary>ما معنى «إصلاح تحريري مرتّب»؟</summary>
+        <div class="body"><p>خطوات مجمّعة ومرتّبة من مصادر عامة، وليست إجراءً رسميًا من الشركة المصنّعة. تعامل معها كإرشاد، وتحقّق من وثائق الصيانة الرسمية قبل استبدال أي قطعة.</p></div>
+      </details>
+
+      <details>
+        <summary>أضفت مفتاح Gemini لكن «اختبار الاتصال» يفشل</summary>
+        <div class="body">
+          <ul>
+            <li>تأكد أن المفتاح صحيح ومُفعّل في حسابك.</li>
+            <li>تأكد من وجود إنترنت فعّال على الجهاز.</li>
+            <li>تأكد أن الموديل المختار متاح لحسابك.</li>
+            <li>إذا ظهر «تم تجاوز حد الطلبات»، انتظر قليلًا ثم أعد المحاولة.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>هل تُرسل بيانات سيارتي أو موقعي إلى أي جهة؟</summary>
+        <div class="body"><p>لا. لا يوجد تسجيل دخول ولا تتبع ولا موقع. عند استخدام المساعد الذكي فقط، يُرسل سجل الرمز من قاعدة البيانات المحلية إلى واجهة Gemini، دون أي بيانات مركبة أو موقع.</p></div>
+      </details>
+
+      <details>
+        <summary>كيف أُعيد الإصدار السابق من البيانات؟</summary>
+        <div class="body"><p>من <strong>الإعدادات ← تحديثات البيانات</strong>، يظهر زر <strong>استعادة الإصدار السابق</strong> عند وجود نسخة محفوظة من آخر تحديث. الاستعادة صريحة ولا تحدث تلقائيًا.</p></div>
+      </details>
+
+      <details>
+        <summary>هل يمكن استخدام التطبيق على آيفون أو على الحاسوب؟</summary>
+        <div class="body"><p>الإصدار الحالي مخصّص لأندرويد. لا توجد نسخة iOS أو سطح مكتب أو ويب.</p></div>
+      </details>
+
+      <details>
+        <summary>حفظت أكوادًا كثيرة — هل تُفقد عند التحديث؟</summary>
+        <div class="body"><p>لا. المحفوظات والسجل والجلسات في قاعدة بيانات مستخدم منفصلة، وتحديث المحتوى لا يمسّها.</p></div>
+      </details>
+    </section>
+
+    <!-- ======================================================== 17 -->
+    <section id="limits">
+      <h2><span class="num">١٧</span> حدود التطبيق (بصراحة)</h2>
+      <p class="sub">معرفتها يوفّر عليك وقتًا، ويمنع أخطاء قرار.</p>
+
+      <table>
+        <thead><tr><th style="width:34%">الحد</th><th>ماذا يعني عمليًا</th></tr></thead>
+        <tbody>
+          <tr><td>لا ربط بين الرمز والسيارة</td><td>لا يمكنك السؤال «هل هذا الرمز يخص تويوتا كامري 2018؟» — الربط غير متوفر في المصادر المفتوحة، وجدول نطاق السيارات فارغ عن قصد.</td></tr>
+          <tr><td>تغطية الإجراءات محدودة</td><td>326 إجراءً فقط من أصل 12,412 رمزًا (أقل من 1%). معظم الرموز لها تعريف وأسباب وأعراض، لكن دون إجراء خطوة بخطوة.</td></tr>
+          <tr><td>النصوص الفنية بلغتها الأصلية</td><td>إنجليزية، وألمانية عند توفرها. لا ترجمة آلية.</td></tr>
+          <tr><td>نطاق السوق: الخليج</td><td>الشركات المشمولة 25 شركة تُباع رسميًا في أسواق الخليج. الشركات الأخرى مستبعدة عند بناء البيانات.</td></tr>
+          <tr><td>لا بيانات كهربائية أو أرقام أطراف</td><td>لا مخططات ولا قيم مرجعية من الشركات المصنّعة، ولا ادّعاء بتغطية بمستوى مراجع الصيانة التجارية.</td></tr>
+          <tr><td>التكاليف تقديرية</td><td>بالدولار، تحريرية، وتختلف حسب المنطقة والسيارة.</td></tr>
+          <tr><td>التحديث يدوي</td><td>لا يوجد تحديث تلقائي في الخلفية؛ أنت من يضبط المصدر ويضغط التحقق.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box danger">
+        <div class="t">تنبيه سلامة</div>
+        <p>
+          الرمز المخزَّن يشير إلى عرض، وليس إلى عطل مؤكد. لا تستبدل قطعة بناءً على الرمز وحده.
+          اتبع تحذيرات السلامة في الإجراءات، وارجع إلى وثائق الصيانة الرسمية عند الشك.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="foot">
+  <div class="card">
+    <h3>كيف أُنتجت الصور في هذا الدليل</h3>
+    <p style="margin:0 0 8px">
+      جميع الصور هي <strong>رسم حقيقي لواجهات التطبيق</strong>، لا رسومات تصميمية: أُنتجت بتشغيل شجرة واجهات Flutter
+      الفعلية مع الموجِّه (router) الحقيقي وقراءة قاعدة البيانات المرفقة نفسها (إصدار <span class="mono">2026.10.23</span>)،
+      بمقاس شاشة 412×892 بكثافة 2x، مع بيانات مستخدم تجريبية للسجل والمحفوظات والجلسة.
+      أداة الإنتاج: <span class="mono">tools/screenshots/screenshot_test.dart</span> (اختبارات Flutter golden)، والملفات في
+      <span class="mono">docs/user-guide/screenshots/</span>.
+    </p>
+    <p style="margin:0">
+      <strong>فرق واحد مع الجهاز:</strong> استُخدمت خطوط ويندوز بدل خطوط أندرويد (Roboto / Noto Naskh Arabic)،
+      لذلك قد تختلف تفاصيل الخطوط وتباعد الأسطر اختلافًا طفيفًا عن شاشة الهاتف. المحتوى والترتيب والألوان والاتجاه مطابقة.
+    </p>
+  </div>
+</div>
+
+<a class="top" href="#intro">↑ أعلى الصفحة</a>
+
+<script>
+  // TOC highlight while scrolling
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    function onScroll() {
+      var y = window.scrollY + 120, best = 0;
+      sections.forEach(function (s, i) { if (s && s.offsetTop <= y) best = i; });
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+</body>
+</html>
